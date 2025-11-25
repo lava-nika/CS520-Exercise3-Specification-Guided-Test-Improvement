@@ -1,0 +1,16 @@
+# Specification 1: Numbers less than 2 are not prime
+assert not res if n < 2 else True, "Numbers < 2 must not be classified as prime"
+
+# Specification 2: Number 2 is prime
+assert (res == True) if n == 2 else True, "2 must be classified as prime"
+
+# Specification 3: Even numbers > 2 are not prime
+assert (not res) if (n > 2 and n % 2 == 0) else True, "Even numbers greater than 2 are not prime"
+
+# Specification 4: If res is True, n has no divisors in [2, n-1]
+assert (all(n % d != 0 for d in range(2, n))) if res else True, \
+    "If res is True, n must not be divisible by any number between 2 and n-1"
+
+# Specification 5: If res is False and n >= 2, then n has some divisor in [2, n-1]
+assert (any(n % d == 0 for d in range(2, n))) if (not res and n >= 2) else True, \
+    "If res is False and n >= 2, there must exist a divisor between 2 and n-1"

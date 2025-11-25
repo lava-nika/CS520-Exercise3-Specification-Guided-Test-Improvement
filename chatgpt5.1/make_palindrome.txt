@@ -1,0 +1,23 @@
+# Specification 1: Empty string handling
+assert (res == "") if string == "" else True, \
+    "If the input string is empty, the result must also be an empty string"
+
+# Specification 2: The result must be a palindrome
+assert res == res[::-1], \
+    "The result must be a palindrome (equal to its own reverse)"
+
+# Specification 3: The result must start with the original string
+assert res.startswith(string), \
+    "The result must begin with the original input string"
+
+# Specification 4: Length constraints relative to input
+assert (string == "" and len(res) == 0) or \
+       (string != "" and len(string) <= len(res) <= 2 * len(string)), \
+    "Result length must be at least the input length and at most twice the input length"
+
+# Specification 5: Minimality – no shorter prefix of res is a valid palindrome starting with string
+assert all(
+    not (prefix.startswith(string) and prefix == prefix[::-1])
+    for prefix in (res[:k] for k in range(len(string), len(res)))
+), \
+    "There must be no shorter prefix of res that is itself a palindrome starting with the input string"
