@@ -24,6 +24,13 @@ This installs:
 
 ## Instructions to run
 
+### Prerequisites
+
+Install required packages:
+```bash
+pip install pytest pytest-cov
+```
+
 ### Run coverage analysis
 
 ```bash
@@ -35,6 +42,12 @@ This script will:
 2. Run spec-guided tests for both problems
 3. Display coverage comparison (statement and branch coverage)
 
+**Expected Output:**
+- Baseline coverage for is_prime: **100% statement, 100% branch**
+- Spec-guided coverage for is_prime: **100% statement, 100% branch**
+- Baseline coverage for make_palindrome: **100% statement, 100% branch**
+- Spec-guided coverage for make_palindrome: **100% statement, 100% branch**
+
 ### Run individual test files
 
 ```bash
@@ -45,6 +58,30 @@ pytest spec_guided_tests.py -v
 # Test make_palindrome spec-guided tests
 cd Ex2_with_spec_guided_tests/problem10
 pytest spec_guided_tests.py -v
+```
+
+### To optionally generate HTML coverage reports 
+
+```bash
+# For is_prime
+cd Ex2_with_spec_guided_tests/problem4
+pytest spec_guided_tests.py --cov=spec_guided_tests --cov-report=html --cov-branch -v
+# HTML report will be in: htmlcov/index.html
+open htmlcov/index.html  # macOS
+# Or: xdg-open htmlcov/index.html  # Linux
+# Or: start htmlcov/index.html  # Windows
+
+# For make_palindrome
+cd ../problem10
+pytest spec_guided_tests.py --cov=spec_guided_tests --cov-report=html --cov-branch
+# HTML report will be in: htmlcov/index.html
+open htmlcov/index.html
+```
+### Sample HTML reports
+From Ex3 directory run:
+```
+open htmlcov/problem4_is_prime/index.html
+open htmlcov/problem10_make_palindrome/index.html
 ```
 
 ---
